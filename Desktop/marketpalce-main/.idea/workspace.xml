@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8fa82bda-d0d5-4509-9683-9513c6f66d73" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marketplace/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/marketplace/news_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/marketplace/search_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Krivoruchka.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Krivoruchka/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Krivoruchka/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/templatetags/custom_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/templatetags/custom_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marketplace/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/marketplace/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/products/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/products/8Au9PJ9EswE.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/products/LoX7aii08l8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/products/photo_2023-10-03_00-18-23.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/products/photo_2025-01-21_09-19-12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/products/photo_2025-01-21_09-19-12_Cd7rwtk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/products/photo_2025-03-31_16-33-41.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/add_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marketplace/add_product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marketplace/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/edit_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marketplace/edit_product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marketplace/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/order_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marketplace/order_history.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marketplace/product_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marketplace/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marketplace/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/sales_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marketplace/sales_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/marketplace/sellers_orders.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;rrrr444&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/rrrr444/krivoruchka.git&quot;,
+    &quot;accountId&quot;: &quot;2a20363b-f9aa-42b6-86eb-1c9b3425ad85&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2vKXtRSrgAFOklikdYbUjw9GxLj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.base.html.executor": "Run",
+    "Python.views.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/User/Desktop/krivoruchka-main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23726.102" />
+        <option value="bundled-python-sdk-5e1850174b45-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23726.102" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8fa82bda-d0d5-4509-9683-9513c6f66d73" name="Changes" comment="" />
+      <created>1743894954431</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743894954431</updated>
+      <workItem from="1743894955393" duration="523000" />
+      <workItem from="1743895597421" duration="3795000" />
+      <workItem from="1743939479130" duration="23000" />
+      <workItem from="1744638838261" duration="30755000" />
+      <workItem from="1745341598574" duration="1354000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/marketpalce_main$views.coverage" NAME="views Coverage Results" MODIFIED="1745247242832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/marketplace" />
+  </component>
+</project>

@@ -1,0 +1,88 @@
+{% extends 'marketplace/base.html' %}
+{% load custom_filters %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-{% if form.instance.pk %}pencil{% else %}plus{% endif %}-square me-2"></i>
+                        {% if form.instance.pk %}Редактирование товара{% else %}Добавление нового товара{% endif %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" id="product-form">
+                        {% csrf_token %}
+
+                        {% if form.errors %}
+                        <div class="alert alert-danger mb-3">
+                            <strong>Ошибки в форме:</strong>
+                            {{ form.errors }}
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label">Название товара</label>
+                            {{ form.name }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_price" class="form-label">Цена (₽)</label>
+                            {{ form.price }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">Описание</label>
+                            {{ form.description }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_image" class="form-label">Изображение товара</label>
+                            {{ form.image }}
+                            {% if form.instance.image %}
+                                <div class="mt-2">
+                                    <small>Текущее изображение:</small>
+                                    <img src="{{ form.instance.image.url }}" class="img-thumbnail mt-1" style="max-height: 100px;">
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_manufacturer" class="form-label">Производитель</label>
+                            {{ form.manufacturer }}
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="submit" class="btn btn-primary" id="submit-btn">
+                                <i class="bi bi-check-circle me-2"></i>
+                                {% if form.instance.pk %}Сохранить изменения{% else %}Добавить товар{% endif %}
+                            </button>
+                            <a href="{% url 'profile' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-circle me-2"></i>Отмена
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('product-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Отладочное сообщение при отправке формы
+    form.addEventListener('submit', function(e) {
+        console.log('Форма отправляется...');
+    });
+
+    // Проверка работы кнопки
+    submitBtn.addEventListener('click', function(e) {
+        console.log('Кнопка нажата');
+    });
+});
+</script>
+{% endblock %}

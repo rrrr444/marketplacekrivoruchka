@@ -1,0 +1,117 @@
+{% extends 'marketplace/base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Статистика продаж -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="bi bi-graph-up me-2"></i>Статистика продаж
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h6 class="text-muted">За последние 30 дней</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="fs-4 fw-bold">{{ sales_stats.total_sales|floatformat:2|intcomma }} ₽</p>
+                                <small class="text-muted">Общая выручка</small>
+                            </div>
+                            <div class="text-end">
+                                <p class="fs-4 fw-bold">{{ sales_stats.total_orders }}</p>
+                                <small class="text-muted">Заказов</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fs-5">{{ sales_stats.avg_order|floatformat:2|intcomma }} ₽</p>
+                                <small class="text-muted">Средний чек</small>
+                            </div>
+                            <div class="text-end">
+                                <p class="fs-5">{{ sales_stats.total_items }}</p>
+                                <small class="text-muted">Товаров продано</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Последние заказы -->
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">
+                            <i class="bi bi-receipt me-2"></i>Последние заказы
+                        </h4>
+                        <a href="{% url 'profile' %}" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-arrow-left me-1"></i>Назад в профиль
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    {% if orders %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>№</th>
+                                    <th>Дата</th>
+                                    <th>Покупатель</th>
+                                    <th>Статус</th>
+                                    <th>Сумма</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in orders %}
+                                <tr>
+                                    <td>#{{ order.id }}</td>
+                                    <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+                                    <td>{{ order.user.get_full_name|default:order.user.username }}</td>
+                                    <td>
+                                        <span class="badge {{ order.get_status_class }}">
+                                            {{ order.get_status_display }}
+                                        </span>
+                                    </td>
+                                    <td>{{ order.get_seller_total|floatformat:2 }} ₽</td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a href="{% url 'order_detail' order.id %}"
+                                               class="btn btn-sm btn-outline-primary"
+                                               title="Подробнее">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            {% if order.status == 'pending' %}
+                                            <a href="{% url 'mark_order_shipped' order.id %}"
+                                               class="btn btn-sm btn-outline-success"
+                                               title="Отправить">
+                                                <i class="bi bi-truck"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-info text-center">
+                        <i class="bi bi-info-circle me-2"></i>У вас пока нет продаж
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

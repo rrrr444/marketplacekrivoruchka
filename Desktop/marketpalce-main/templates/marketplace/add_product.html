@@ -1,0 +1,94 @@
+{% extends 'marketplace/base.html' %}
+{% load custom_filters %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-{% if form.instance.pk %}pencil-square{% else %}plus-square{% endif %} me-2"></i>
+                        {% if form.instance.pk %}Редактирование товара{% else %}Добавление нового товара{% endif %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Название и производитель -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="id_name" class="form-label">Название товара*</label>
+                                {{ form.name }}
+                                <div class="invalid-feedback">Пожалуйста, укажите название товара</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_manufacturer" class="form-label">Производитель*</label>
+                                {{ form.manufacturer }}
+                                <div class="invalid-feedback">Пожалуйста, укажите производителя</div>
+                            </div>
+                        </div>
+
+                        <!-- Цена -->
+                        <div class="mb-3">
+                            <label for="id_price" class="form-label">Цена (₽)*</label>
+                            <div class="input-group">
+                                {{ form.price }}
+                                <span class="input-group-text">₽</span>
+                            </div>
+                            <div class="invalid-feedback">Пожалуйста, укажите цену</div>
+                        </div>
+
+                        <!-- Изображение -->
+                        <div class="mb-3">
+                            <label for="id_image" class="form-label">Изображение товара*</label>
+                            {{ form.image }}
+                            {% if form.instance.image %}
+                                <div class="mt-2">
+                                    <small>Текущее изображение:</small>
+                                    <img src="{{ form.instance.image.url }}" class="img-thumbnail mt-1" style="max-height: 150px; display: block;">
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Описание -->
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">Подробное описание*</label>
+                            {{ form.description }}
+                            <div class="form-text">Расскажите покупателям о товаре подробнее</div>
+                        </div>
+
+                        <!-- Кнопки -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a href="{% url 'profile' %}" class="btn btn-outline-secondary me-md-2">
+                                <i class="bi bi-x-circle me-1"></i> Отмена
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle me-1"></i>
+                                {% if form.instance.pk %}Сохранить изменения{% else %}Добавить товар{% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Валидация формы
+(function () {
+  'use strict'
+  const forms = document.querySelectorAll('.needs-validation')
+  Array.from(forms).forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+{% endblock %}

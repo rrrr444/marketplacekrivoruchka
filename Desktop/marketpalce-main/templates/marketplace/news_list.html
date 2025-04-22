@@ -1,0 +1,22 @@
+{% extends 'marketplace/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Новости</h2>
+
+    {% for news in news_items %}
+    <div class="card mb-4 shadow-sm">
+        {% if news.image %}
+        <img src="{{ news.image.url }}" class="card-img-top" alt="{{ news.title }}">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ news.title }}</h5>
+            <p class="card-text">{{ news.content|truncatechars:300 }}</p>
+            <p class="card-text"><small class="text-muted">{{ news.created_at|date:"d.m.Y H:i" }}</small></p>
+        </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-info">Новостей пока нет.</div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+*.pyc
+*~
+pycache
+db.sqlite3
+/static
+.env
+pycache/
+*.sqlite3
+venv/
