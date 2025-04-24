@@ -1,0 +1,40 @@
+{% extends 'marketplace/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>Мои чаты</h4>
+        </div>
+        <div class="card-body">
+            {% if chats %}
+                <div class="list-group">
+                    {% for chat in chats %}
+                        <a href="{% url 'order_chat' chat.order.id %}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Заказ #{{ chat.order.id }}</h5>
+                                <small>
+                                    {% if chat.last_message_time %}
+                                        {{ chat.last_message_time|timesince }} назад
+                                    {% else %}
+                                        нет сообщений
+                                    {% endif %}
+                                </small>
+                            </div>
+                            <p class="mb-1">
+                                {% if request.user == chat.order.user %}
+                                    Продавец: {{ chat.other_user.username }}
+                                {% else %}
+                                    Покупатель: {{ chat.other_user.username }}
+                                {% endif %}
+                            </p>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info">У вас нет активных чатов</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

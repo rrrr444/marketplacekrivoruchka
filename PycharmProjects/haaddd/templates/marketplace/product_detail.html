@@ -1,0 +1,140 @@
+{% extends 'marketplace/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm mb-5">
+        <div class="row g-0">
+            <div class="col-md-6">
+                <img src="{{ product.image.url }}" class="img-fluid rounded-start" style="height: 100%; object-fit: cover;" alt="{{ product.name }}">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h2 class="card-title">{{ product.name }}</h2>
+                    <p class="text-muted mb-2">
+                        <i class="bi bi-building"></i> {{ product.manufacturer }}
+                    </p>
+
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="rating-stars text-warning me-2">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= product.rating %}★{% else %}☆{% endif %}
+                            {% endfor %}
+                        </div>
+                        <small class="text-muted">({{ product.reviews.count }} отзывов)</small>
+                    </div>
+
+                    <h4 class="text-primary mb-4">{{ product.price }} ₽</h4>
+
+                    <p class="card-text">{{ product.description }}</p>
+
+                    <form action="{% url 'add_to_cart' product.id %}" method="post" class="mt-4">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="bi bi-cart-plus me-2"></i> Добавить в корзину
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Отзывы -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <h4 class="mb-0">
+                <i class="bi bi-chat-square-text me-2"></i>
+                Отзывы покупателей
+            </h4>
+        </div>
+
+        <div class="card-body">
+            {% if user_review %}
+            <div class="alert alert-success mb-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        Вы уже оставили отзыв на этот товар
+                    </div>
+                    <div class="text-warning">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= user_review.rating %}★{% else %}☆{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% elif can_review %}
+            <div class="border p-4 rounded mb-4">
+                <h5>Оставить отзыв</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Ваша оценка</label>
+                        <div class="rating">
+                            {% for i in "54321" %}
+                                <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}"
+                                       {% if form.rating.value == i %}checked{% endif %}>
+                                <label for="star{{ i }}">★</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Комментарий</label>
+                        <textarea name="text" class="form-control" rows="3"
+                                  placeholder="Расскажите о вашем опыте использования товара">{{ form.text.value|default:'' }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+                </form>
+            </div>
+            {% elif request.user.is_authenticated %}
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                Вы можете оставить отзыв после получения товара
+            </div>
+            {% endif %}
+
+            {% if product.reviews.all %}
+            <div class="mt-4">
+                {% for review in product.reviews.all %}
+                <div class="mb-4 pb-3 border-bottom">
+                    <div class="d-flex justify-content-between mb-2">
+                        <h6 class="mb-0">{{ review.user.get_full_name|default:review.user.username }}</h6>
+                        <div class="text-warning">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <p class="mb-2">{{ review.text }}</p>
+                    <small class="text-muted">{{ review.created_at|date:"d.m.Y H:i" }}</small>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                У этого товара пока нет отзывов
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.rating > input { display: none; }
+.rating > label {
+    font-size: 1.5rem;
+    color: #ddd;
+    cursor: pointer;
+}
+.rating > input:checked ~ label,
+.rating > input:hover ~ label {
+    color: gold;
+}
+</style>
+{% endblock %}

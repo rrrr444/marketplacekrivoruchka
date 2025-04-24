@@ -1,0 +1,42 @@
+{% extends 'marketplace/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Мои заказы</h2>
+
+    <div class="list-group">
+        {% for order in orders %}
+        <div class="list-group-item mb-3">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h5>Заказ #{{ order.id }}</h5>
+                    <p>Продавец: {{ order.order_items.first.seller.username }}</p>
+                </div>
+                <span class="badge bg-{{ order.get_status_class }}">
+                    {{ order.get_status_display }}
+                </span>
+            </div>
+
+            <p class="mb-1">Дата: {{ order.created_at|date:"d.m.Y H:i" }}</p>
+            <p class="mb-1">Сумма: {{ order.total_price }} ₽</p>
+            <p class="mb-1">Товаров: {{ order.order_items.count }}</p>
+
+            {% if order.status == 'shipped' %}
+            <form method="post" action="{% url 'confirm_delivery' order.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-success mt-2">
+                    Подтвердить получение
+                </button>
+            </form>
+            {% endif %}
+
+            <a href="{% url 'order_detail' order.id %}" class="btn btn-sm btn-outline-primary mt-2">
+                Подробнее о заказе
+            </a>
+        </div>
+        {% empty %}
+        <p class="text-muted">У вас пока нет заказов</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

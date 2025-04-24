@@ -1,0 +1,89 @@
+{% extends 'marketplace/base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">
+                    <i class="bi bi-graph-up me-2"></i>История продаж
+                </h4>
+                <a href="{% url 'seller_orders' %}" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-arrow-left me-1"></i>Назад к статистике
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="mb-4">
+                <form method="get" class="row g-3">
+                    <div class="col-md-3">
+                        <label for="start_date" class="form-label">С</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="end_date" class="form-label">По</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date">
+                    </div>
+                    <div class="col-md-3 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-funnel me-1"></i>Фильтр
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            {% if sales %}
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>№ заказа</th>
+                            <th>Покупатель</th>
+                            <th>Дата</th>
+                            <th>Товары</th>
+                            <th>Статус</th>
+                            <th>Сумма</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sale in sales %}
+                        <tr>
+                            <td>#{{ sale.id }}</td>
+                            <td>{{ sale.user.get_full_name|default:sale.user.username }}</td>
+                            <td>{{ sale.created_at|date:"d.m.Y H:i" }}</td>
+                            <td>
+                                {% for item in sale.order_items.all %}
+                                    {% if item.product.seller == request.user %}
+                                        {{ item.product.name }} (×{{ item.quantity }})<br>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <span class="badge
+                                    {% if sale.status == 'completed' %}bg-success
+                                    {% elif sale.status == 'shipped' %}bg-info
+                                    {% else %}bg-secondary{% endif %}">
+                                    {{ sale.get_status_display }}
+                                </span>
+                            </td>
+                            <td>
+                                {% with total=sale.order_items.filter(product__seller=request.user).aggregate(total=Sum('product__price' * 'quantity')) %}
+                                    {{ total.total|default:0 }} ₽
+                                {% endwith %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info text-center">
+                <i class="bi bi-info-circle me-2"></i>За выбранный период продаж нет
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
